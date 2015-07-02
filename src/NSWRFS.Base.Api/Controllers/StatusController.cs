@@ -1,7 +1,21 @@
-﻿using System.Web.Http;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="StatusController.cs" company="NSW RFS">
+//   Copyright 2014 NSW Rural Fire Service, NSW Government, Australia
+// </copyright>
+// <summary>
+//   Defines the StatusController type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+
 
 namespace NSWRFS.Base.Api.Controllers
 {
+    using System.Web.Http;
+
+    /// <summary>
+    /// The status controller.
+    /// </summary>
     [RoutePrefix("api")]
     public class StatusController : ApiController
     {
