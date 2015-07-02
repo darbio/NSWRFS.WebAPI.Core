@@ -5,21 +5,38 @@ using NSWRFS.Base.Api.Controllers;
 
 namespace NSWRFS.Base.Api.Tests.Controllers
 {
+    using System.Web.Http;
+    using System.Web.Http.Results;
+
     [TestClass]
     public class HomeControllerTest
     {
         [TestMethod]
-        public void Index()
+        public void Ping()
         {
             // Arrange
-            HomeController controller = new HomeController();
+            var controller = new StatusController();
 
             // Act
-            ViewResult result = controller.Index() as ViewResult;
+            IHttpActionResult result = controller.Ping();
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual("Home Page", result.ViewBag.Title);
+            Assert.IsInstanceOfType(result, typeof(OkResult));
+        }
+
+        [TestMethod]
+        public void Health()
+        {
+            // Arrange
+            var controller = new StatusController();
+
+            // Act
+            IHttpActionResult result = controller.Health();
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOfType(result, typeof(OkResult));
         }
     }
 }
