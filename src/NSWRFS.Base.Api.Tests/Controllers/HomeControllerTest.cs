@@ -5,6 +5,7 @@ using NSWRFS.Base.Api.Controllers;
 
 namespace NSWRFS.Base.Api.Tests.Controllers
 {
+    using System.Net;
     using System.Web.Http;
     using System.Web.Http.Results;
 
@@ -18,11 +19,11 @@ namespace NSWRFS.Base.Api.Tests.Controllers
             var controller = new StatusController();
 
             // Act
-            IHttpActionResult result = controller.Ping();
+            var result = controller.Ping() as OkNegotiatedContentResult<string>;
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(OkResult));
+            Assert.AreEqual("OK", result.Content);
         }
 
         [TestMethod]
@@ -32,11 +33,11 @@ namespace NSWRFS.Base.Api.Tests.Controllers
             var controller = new StatusController();
 
             // Act
-            IHttpActionResult result = controller.Health();
+            var result = controller.Health() as OkNegotiatedContentResult<object>;
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(OkResult));
+            Assert.IsNotNull(result.Content);
         }
     }
 }
