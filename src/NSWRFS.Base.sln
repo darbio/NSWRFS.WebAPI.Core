@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSWRFS.Base.Api", "NSWRFS.Base.Api\NSWRFS.Base.Api.csproj", "{D400A348-0573-404C-81FA-617FA61D5F1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSWRFS.Base.Api.Tests", "NSWRFS.Base.Api.Tests\NSWRFS.Base.Api.Tests.csproj", "{582BB49C-2566-422F-8650-8798DEBE9017}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D400A348-0573-404C-81FA-617FA61D5F1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D400A348-0573-404C-81FA-617FA61D5F1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D400A348-0573-404C-81FA-617FA61D5F1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D400A348-0573-404C-81FA-617FA61D5F1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{582BB49C-2566-422F-8650-8798DEBE9017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{582BB49C-2566-422F-8650-8798DEBE9017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{582BB49C-2566-422F-8650-8798DEBE9017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{582BB49C-2566-422F-8650-8798DEBE9017}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
