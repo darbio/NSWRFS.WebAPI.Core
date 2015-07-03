@@ -1,9 +1,12 @@
 ﻿namespace NSWRFS.Base.Api
 {
+    using System.Linq;
     using System.Web.Configuration;
     using System.Web.Http;
 
     using NSWRFS.Base.Api.App_Start;
+    using NSWRFS.Base.Api.ContractResolvers;
+    using NSWRFS.Base.Api.Formatters;
 
     public static class WebApiConfig
     {
@@ -24,6 +27,9 @@
 
             // Allow CORS access from all NSW RFS Subdomains
             config.EnableCors();
+
+            // Default to JSON for all responses
+            config.Formatters.Add(new DefaultJsonFormatter());
         }
     }
 }

@@ -14,6 +14,7 @@ This is the NSW RFS Web API base template. It provides the following features:
 2. All app settings are persisted in `Secrets.Config`. This file is not committed to the git repository.
 3. Do not include anything in the application code which you would not be happy with being publicly available.
 4. Routes are specified using attributes and are versioned (e.g. /api/v1/controller/action).
+5. We deal with JSON return types by default.
 
 ## Models
 
