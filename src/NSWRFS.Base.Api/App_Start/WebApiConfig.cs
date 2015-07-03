@@ -21,6 +21,9 @@
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            // Allow CORS access from all NSW RFS Subdomains
+            config.EnableCors();
         }
     }
 }
