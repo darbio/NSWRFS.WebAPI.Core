@@ -5,6 +5,7 @@ This is the NSW RFS Web API base template. It provides the following features:
 * Auth0 integration.
 * Status (ping and health) endpoints.
 * Secrets.config for storing secret data not to be committed to a repository [see here](http://www.mattburkedev.com/keep-your-azure-secrets-safely-out-of-git/).
+* WebDeploy Package setup for AWS Elastic Beanstalk application
 
 ## General rules
 

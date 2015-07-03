@@ -194,3 +194,7 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+
+# NSW RFS Specific
+*secrets.config*
+deployment/*
