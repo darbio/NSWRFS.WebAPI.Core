@@ -1,16 +1,13 @@
-﻿using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSWRFS.Base.Api;
-using NSWRFS.Base.Api.Controllers;
-
-namespace NSWRFS.Base.Api.Tests.Controllers
+﻿namespace NSWRFS.Base.Api.Tests.Controllers
 {
-    using System.Net;
-    using System.Web.Http;
     using System.Web.Http.Results;
 
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    using NSWRFS.Base.Api.Controllers;
+
     [TestClass]
-    public class HomeControllerTest
+    public class StatusControllerTest
     {
         [TestMethod]
         public void Ping()

@@ -13,12 +13,20 @@ namespace NSWRFS.Base.Api.Controllers
 {
     using System.Web.Http;
 
+    using NSWRFS.Base.Api.Models;
+
     /// <summary>
     /// The status controller.
     /// </summary>
     [RoutePrefix("api")]
     public class StatusController : ApiController
     {
+        /// <summary>
+        /// A HTTP ping endpoint. Always returns 200 OK if the application is up.
+        /// </summary>
+        /// <returns>
+        /// 200 OK with content "OK".
+        /// </returns>
         [Route("ping")]
         [HttpGet]
         public IHttpActionResult Ping()
@@ -26,15 +34,27 @@ namespace NSWRFS.Base.Api.Controllers
             return this.Ok("OK");
         }
 
+        /// <summary>
+        /// A HTTP health endpoint. Always returns 200 OK if the application is up. Content is an object which contains the health of any downstream systems upon which this API relies.
+        /// </summary>
+        /// <returns>
+        /// 200 OK with content HealthViewModel_GET.
+        /// </returns>
         [Route("health")]
         [HttpGet]
         public IHttpActionResult Health()
         {
             // Do a test to ensure I'm healthy
-            var health = new object();
+            var isHealthy = true; // TODO
+
+            // Construct my return object
+            var health = new HealthViewModel_GET()
+            {
+                IsHealthy = isHealthy
+            };
 
             // Return the health object
-            // 200 on OK
+            // HTTP 200 OK
             return this.Ok(health);
         }
     }
