@@ -28,8 +28,9 @@
             // Allow CORS access from all NSW RFS Subdomains
             config.EnableCors();
 
-            // Default to JSON for all responses
+            // Default to JSON
             config.Formatters.Add(new DefaultJsonFormatter());
+            config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new LowerCaseDelimitedPropertyNamesContractResolver('_');
         }
     }
 }
