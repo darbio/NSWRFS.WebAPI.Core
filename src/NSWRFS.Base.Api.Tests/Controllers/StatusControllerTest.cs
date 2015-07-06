@@ -5,6 +5,7 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     using NSWRFS.Base.Api.Controllers;
+    using NSWRFS.Base.Api.Models;
 
     [TestClass]
     public class StatusControllerTest
@@ -30,7 +31,7 @@
             var controller = new StatusController();
 
             // Act
-            var result = controller.Health() as OkNegotiatedContentResult<object>;
+            var result = controller.Health() as OkNegotiatedContentResult<HealthViewModel_GET>;
 
             // Assert
             Assert.IsNotNull(result);
