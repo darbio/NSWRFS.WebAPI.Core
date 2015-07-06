@@ -186,6 +186,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Attributes\NswRfsCorsPolicyAttribute.cs" />
     <Compile Include="ContractResolvers\LowerCaseDelimitedPropertyNamesContractResolver.cs" />
+    <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Formatters\DefaultJsonFormatter.cs" />
     <Compile Include="Global.asax.cs">
@@ -194,6 +195,7 @@
     <Compile Include="Models\HealthViewModel_GET.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
+    <Compile Include="Results\OkNegotiatedIListContentResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -96,6 +96,8 @@
     <Reference Include="System.Net.Http.WebRequest" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BaseApiControllerTest.cs" />
+    <Compile Include="Mocks\ListTestController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\StatusControllerTest.cs" />
   </ItemGroup>
