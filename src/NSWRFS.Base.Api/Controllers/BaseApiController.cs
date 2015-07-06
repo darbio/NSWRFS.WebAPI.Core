@@ -25,19 +25,6 @@ namespace NSWRFS.Base.Api.Controllers
     public abstract class BaseApiController : ApiController
     {
         /// <summary>
-        /// Created response.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="content"></param>
-        /// <param name="createdResourceUri"></param>
-        /// <returns></returns>
-        protected internal virtual OkNegotiatedContentResult<T> Created<T>(T content, Uri createdResourceUri)
-        {
-            var response = new OkCreatedNegotiatedContentResult<T>(content, this, createdResourceUri);
-            return response;
-        }
-
-        /// <summary>
         /// The ok list.
         /// </summary>
         /// <param name="list">

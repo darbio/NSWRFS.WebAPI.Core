@@ -195,7 +195,6 @@
     <Compile Include="Models\HealthViewModel_GET.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
-    <Compile Include="Results\OkCreatedNegotiatedContentResult.cs" />
     <Compile Include="Results\OkNegotiatedIListContentResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

@@ -32,7 +32,7 @@ namespace NSWRFS.Base.Api.Tests.Mocks
         public IHttpActionResult Post()
         {
             // Return
-            return this.Created(new { foo = "bar" }, new Uri("http://localhost/Test/1"));
+            return this.Created(new Uri("http://localhost/Test/1"), new { foo = "bar" });
         }
     }
 }
