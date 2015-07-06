@@ -14,20 +14,8 @@ namespace NSWRFS.Base.Api.Tests.Mocks
     /// <summary>
     /// The list test controller.
     /// </summary>
-    public class ListTestController : BaseApiController
+    public class TestController : BaseApiController
     {
-        /// <summary>
-        /// The get list.
-        /// </summary>
-        /// <param name="page">
-        /// The page.
-        /// </param>
-        /// <param name="per_page">
-        /// The per page.
-        /// </param>
-        /// <returns>
-        /// A 200 OK with OkList headers
-        /// </returns>
         [Route]
         [HttpGet]
         public IHttpActionResult Get(int page = 1, int per_page = 20)
@@ -36,7 +24,15 @@ namespace NSWRFS.Base.Api.Tests.Mocks
             var list = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...".Split(' ').ToList();
             
             // Return
-            return this.OkList(list, new Uri("http://localhost/ListTest/"), page, per_page);
+            return this.OkList(list, new Uri("http://localhost/Test/"), page, per_page);
+        }
+
+        [Route]
+        [HttpPost]
+        public IHttpActionResult Post()
+        {
+            // Return
+            return this.Created(new { foo = "bar" }, new Uri("http://localhost/Test/1"));
         }
     }
 }

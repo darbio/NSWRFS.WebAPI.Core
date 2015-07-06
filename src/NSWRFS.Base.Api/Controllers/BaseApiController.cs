@@ -25,7 +25,20 @@ namespace NSWRFS.Base.Api.Controllers
     public abstract class BaseApiController : ApiController
     {
         /// <summary>
-        /// The 200 List response for an IList`T` which has not been altered for paging. 
+        /// Created response.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="content"></param>
+        /// <param name="createdResourceUri"></param>
+        /// <returns></returns>
+        protected internal virtual OkNegotiatedContentResult<T> Created<T>(T content, Uri createdResourceUri)
+        {
+            var response = new OkCreatedNegotiatedContentResult<T>(content, this, createdResourceUri);
+            return response;
+        }
+
+        /// <summary>
+        /// The ok list.
         /// </summary>
         /// <param name="list">
         /// The list.
@@ -42,7 +55,7 @@ namespace NSWRFS.Base.Api.Controllers
         /// <typeparam name="T">
         /// </typeparam>
         /// <returns>
-        /// The <see cref="OkNegotiatedContentResult"/>.
+        /// The <see cref="OkNegotiatedIListContentResult"/>.
         /// </returns>
         protected internal virtual OkNegotiatedIListContentResult<IList<T>, T> OkList<T>(IList<T> list, Uri actionBaseUri, int currentPageIndex, int pageSize) where T : class
         {
@@ -75,7 +88,7 @@ namespace NSWRFS.Base.Api.Controllers
         }
 
         /// <summary>
-        /// The 200 List response for an IList`T` which has been pre-altered for paging.
+        /// The ok list.
         /// </summary>
         /// <param name="list">
         /// The list.
@@ -101,7 +114,7 @@ namespace NSWRFS.Base.Api.Controllers
         /// <typeparam name="T">
         /// </typeparam>
         /// <returns>
-        /// The <see cref="OkNegotiatedContentResult"/>.
+        /// The <see cref="OkNegotiatedIListContentResult"/>.
         /// </returns>
         protected internal virtual OkNegotiatedIListContentResult<IList<T>, T> OkList<T>(IList<T> list, Uri firstPageUri, Uri previousPageUri, Uri nextPageUri, Uri lastPageUri, int currentPageIndex, int pageCount)
         {
