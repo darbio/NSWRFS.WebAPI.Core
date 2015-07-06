@@ -98,5 +98,34 @@
                 }
             }
         }
+
+        [TestMethod]
+        public void NoContent_Returns204_Always()
+        {
+            // Arrange
+            var config = new HttpConfiguration();
+            config.Routes.MapHttpRoute(
+                "Default",
+                "{controller}/{action}",
+                new
+                {
+                    controller = "Test",
+                    action = "NoContent"
+                });
+
+            var server = new HttpServer(config);
+
+            using (var client = new HttpMessageInvoker(server))
+            {
+                // Act
+                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/NoContent"))
+                using (var response = client.SendAsync(request, CancellationToken.None).Result)
+                {
+                    // Assert
+                    Assert.IsNotNull(response);
+                    Assert.AreEqual(response.StatusCode, HttpStatusCode.NoContent);
+                }
+            }
+        }
     }
 }

@@ -24,6 +24,11 @@ namespace NSWRFS.Base.Api.Controllers
     /// </summary>
     public abstract class BaseApiController : ApiController
     {
+        protected internal virtual NoContentNegotiatedContentResult NoContent()
+        {
+            return new NoContentNegotiatedContentResult(this);
+        }
+
         /// <summary>
         /// The ok list.
         /// </summary>

@@ -34,5 +34,13 @@ namespace NSWRFS.Base.Api.Tests.Mocks
             // Return
             return this.Created(new Uri("http://localhost/Test/1"), new { foo = "bar" });
         }
+
+        [Route("NoContent")]
+        [HttpPost]
+        public IHttpActionResult NoContent()
+        {
+            // Return
+            return base.NoContent();
+        }
     }
 }
