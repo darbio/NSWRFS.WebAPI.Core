@@ -16,6 +16,25 @@ This is the NSW RFS Web API base template. It provides the following features:
 4. Routes are specified using attributes and are versioned (e.g. /api/v1/controller/action).
 5. We deal with JSON return types by default.
 
+## API Methods
+
+All API methods should return `IHttpActionResults`. The `BaseApiController` defines an extended number of methods to help with this.
+
+For example:
+
+```
+public IHttpActionResult Validate(EntityViewModel_POST viewmodel)
+{
+    // Validate the viewmodel
+	if (!IsValid(viewmodel))
+	{
+		return base.UnprocessibleEntity();
+	}
+
+	...
+}
+```
+
 ## Models
 
 All controllers should transfer data via a view model, unless a specific type (e.g. string, bool, int etc.) is more pragmatic.

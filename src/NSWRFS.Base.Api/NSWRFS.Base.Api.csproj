@@ -188,6 +188,9 @@
     <Compile Include="ContractResolvers\LowerCaseDelimitedPropertyNamesContractResolver.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
+    <Compile Include="ExceptionLoggers\ExceptionLessExceptionLogger.cs" />
+    <Compile Include="Exceptions\BusinessException.cs" />
+    <Compile Include="Filters\ExceptionHandlingAttribute.cs" />
     <Compile Include="Formatters\DefaultJsonFormatter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -218,6 +221,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
+    <Folder Include="ExceptionHandlers\" />
     <Folder Include="Providers\" />
   </ItemGroup>
   <ItemGroup>

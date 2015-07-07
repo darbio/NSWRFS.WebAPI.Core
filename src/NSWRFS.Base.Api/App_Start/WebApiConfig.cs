@@ -6,6 +6,7 @@
 
     using NSWRFS.Base.Api.App_Start;
     using NSWRFS.Base.Api.ContractResolvers;
+    using NSWRFS.Base.Api.Filters;
     using NSWRFS.Base.Api.Formatters;
 
     public static class WebApiConfig
@@ -21,6 +22,9 @@
                 Audience = clientId,
                 SymmetricKey = clientSecret
             });
+
+            // Add Exception Handling filter
+            config.Filters.Add(new ExceptionHandlingAttribute());
 
             // Web API routes
             config.MapHttpAttributeRoutes();

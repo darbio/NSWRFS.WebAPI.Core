@@ -273,5 +273,67 @@
                 }
             }
         }
+
+        [TestMethod]
+        public void Exception_Returns500_Always()
+        {
+            // Arrange
+            var config = new HttpConfiguration();
+            config.Routes.MapHttpRoute(
+                "Default",
+                "{controller}/{action}",
+                new
+                {
+                    controller = "Test",
+                    action = "Exception"
+                });
+
+            var server = new HttpServer(config);
+
+            using (var client = new HttpMessageInvoker(server))
+            {
+                // Act
+                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/Exception"))
+                using (var response = client.SendAsync(request, CancellationToken.None).Result)
+                {
+                    // Assert
+                    Assert.IsNotNull(response);
+                    Assert.AreEqual(response.ReasonPhrase, "Critical Exception");
+                    Assert.AreEqual(response.Content.ReadAsStringAsync().Result, "An error occurred. Please try again or contact the administrator.");
+                    Assert.AreEqual(response.StatusCode, HttpStatusCode.InternalServerError);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void BusinessException_Returns500_Always()
+        {
+            // Arrange
+            var config = new HttpConfiguration();
+            config.Routes.MapHttpRoute(
+                "Default",
+                "{controller}/{action}",
+                new
+                {
+                    controller = "Test",
+                    action = "BusinessException"
+                });
+
+            var server = new HttpServer(config);
+
+            using (var client = new HttpMessageInvoker(server))
+            {
+                // Act
+                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/BusinessException"))
+                using (var response = client.SendAsync(request, CancellationToken.None).Result)
+                {
+                    // Assert
+                    Assert.IsNotNull(response);
+                    Assert.AreEqual(response.ReasonPhrase, "Exception");
+                    Assert.AreEqual(response.Content.ReadAsStringAsync().Result, "This is a test business exception");
+                    Assert.AreEqual(response.StatusCode, HttpStatusCode.InternalServerError);
+                }
+            }
+        }
     }
 }

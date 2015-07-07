@@ -10,6 +10,8 @@ namespace NSWRFS.Base.Api.Tests.Mocks
     using System.Web.UI;
 
     using NSWRFS.Base.Api.Controllers;
+    using NSWRFS.Base.Api.Exceptions;
+    using NSWRFS.Base.Api.Filters;
 
     /// <summary>
     /// The list test controller.
@@ -81,6 +83,28 @@ namespace NSWRFS.Base.Api.Tests.Mocks
         {
             // Return
             return base.UnprocessibleEntity();
+        }
+
+        [Route("Exception")]
+        [HttpPost]
+        [ExceptionHandling]
+        public IHttpActionResult Exception()
+        {
+            throw new Exception("This is a test exception");
+
+            // Return
+            return base.Ok();
+        }
+
+        [Route("BusinessException")]
+        [HttpPost]
+        [ExceptionHandling]
+        public IHttpActionResult BusinessException()
+        {
+            throw new BusinessException("This is a test business exception");
+
+            // Return
+            return base.Ok();
         }
     }
 }
