@@ -24,6 +24,67 @@ namespace NSWRFS.Base.Api.Controllers
     /// </summary>
     public abstract class BaseApiController : ApiController
     {
+        /// <summary>
+        /// The not modified.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="NotModifiedNegotiatedContentResult"/>.
+        /// </returns>
+        protected internal virtual UnprocessableEntityNegotiatedContentResult UnprocessibleEntity()
+        {
+            return new UnprocessableEntityNegotiatedContentResult(this);
+        }
+
+        /// <summary>
+        /// The not modified.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="NotModifiedNegotiatedContentResult"/>.
+        /// </returns>
+        protected internal virtual UnsupportedMediaTypeNegotiatedContentResult UnsupportedMediaType()
+        {
+            return new UnsupportedMediaTypeNegotiatedContentResult(this);
+        }
+
+        /// <summary>
+        /// The not modified.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="NotModifiedNegotiatedContentResult"/>.
+        /// </returns>
+        protected internal virtual GoneNegotiatedContentResult Gone()
+        {
+            return new GoneNegotiatedContentResult(this);
+        }
+
+        /// <summary>
+        /// The not modified.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="NotModifiedNegotiatedContentResult"/>.
+        /// </returns>
+        protected internal virtual MethodNotAllowedNegotiatedContentResult MethodNotAllowed()
+        {
+            return new MethodNotAllowedNegotiatedContentResult(this);
+        }
+
+        /// <summary>
+        /// The not modified.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="NotModifiedNegotiatedContentResult"/>.
+        /// </returns>
+        protected internal virtual NotModifiedNegotiatedContentResult NotModified()
+        {
+            return new NotModifiedNegotiatedContentResult(this);
+        }
+
+        /// <summary>
+        /// The no content.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="NoContentNegotiatedContentResult"/>.
+        /// </returns>
         protected internal virtual NoContentNegotiatedContentResult NoContent()
         {
             return new NoContentNegotiatedContentResult(this);
@@ -45,9 +106,10 @@ namespace NSWRFS.Base.Api.Controllers
         /// The page size.
         /// </param>
         /// <typeparam name="T">
+        /// The content type.
         /// </typeparam>
         /// <returns>
-        /// The <see cref="OkNegotiatedIListContentResult"/>.
+        /// The OkNegotiatedIListContentResult.
         /// </returns>
         protected internal virtual OkNegotiatedIListContentResult<IList<T>, T> OkList<T>(IList<T> list, Uri actionBaseUri, int currentPageIndex, int pageSize) where T : class
         {
@@ -104,9 +166,10 @@ namespace NSWRFS.Base.Api.Controllers
         /// The page count.
         /// </param>
         /// <typeparam name="T">
+        /// The content type
         /// </typeparam>
         /// <returns>
-        /// The <see cref="OkNegotiatedIListContentResult"/>.
+        /// The OkNegotiatedIListContentResult
         /// </returns>
         protected internal virtual OkNegotiatedIListContentResult<IList<T>, T> OkList<T>(IList<T> list, Uri firstPageUri, Uri previousPageUri, Uri nextPageUri, Uri lastPageUri, int currentPageIndex, int pageCount)
         {

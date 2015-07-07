@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="NoContentNegotiatedContentResult.cs" company="NSW RFS">
+// <copyright file="NotModifiedNegotiatedContentResult.cs" company="NSW RFS">
 //   Copyright 2014 NSW Rural Fire Service, NSW Government, Australia
 // </copyright>
 // <summary>
-//   Defines the NoContentNegotiatedContentResult type.
+//   Defines the NotModifiedNegotiatedContentResult type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -21,21 +21,21 @@ namespace NSWRFS.Base.Api.Results
     /// <summary>
     /// The ok negotiated i enumerable content result.
     /// </summary>
-    public class NoContentNegotiatedContentResult : OkNegotiatedContentResult<object>
+    public class NotModifiedNegotiatedContentResult : OkNegotiatedContentResult<object>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="NoContentNegotiatedContentResult"/> class.
+        /// Initializes a new instance of the <see cref="NotModifiedNegotiatedContentResult"/> class.
         /// </summary>
         /// <param name="controller">
         /// The controller.
         /// </param>
-        public NoContentNegotiatedContentResult(ApiController controller)
+        public NotModifiedNegotiatedContentResult(ApiController controller)
             : base(null, controller)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NoContentNegotiatedContentResult"/> class.
+        /// Initializes a new instance of the <see cref="NotModifiedNegotiatedContentResult"/> class.
         /// </summary>
         /// <param name="contentNegotiator">
         /// The content negotiator.
@@ -46,7 +46,7 @@ namespace NSWRFS.Base.Api.Results
         /// <param name="formatters">
         /// The formatters.
         /// </param>
-        public NoContentNegotiatedContentResult(
+        public NotModifiedNegotiatedContentResult(
             IContentNegotiator contentNegotiator,
             HttpRequestMessage request,
             IEnumerable<MediaTypeFormatter> formatters)
@@ -66,7 +66,7 @@ namespace NSWRFS.Base.Api.Results
         public override async Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
         {
             var response = await base.ExecuteAsync(cancellationToken);
-            response.StatusCode = HttpStatusCode.NoContent;
+            response.StatusCode = HttpStatusCode.NotModified;
             return response;
         }
     }

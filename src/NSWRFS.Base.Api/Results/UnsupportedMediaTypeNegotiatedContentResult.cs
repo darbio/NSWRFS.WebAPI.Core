@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="NoContentNegotiatedContentResult.cs" company="NSW RFS">
+// <copyright file="UnsupportedMediaTypeNegotiatedContentResult.cs" company="NSW RFS">
 //   Copyright 2014 NSW Rural Fire Service, NSW Government, Australia
 // </copyright>
 // <summary>
-//   Defines the NoContentNegotiatedContentResult type.
+//   Defines the UnsupportedMediaTypeNegotiatedContentResult type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -19,23 +19,23 @@ namespace NSWRFS.Base.Api.Results
     using System.Web.Http.Results;
 
     /// <summary>
-    /// The ok negotiated i enumerable content result.
+    /// The 405 negotiated content result.
     /// </summary>
-    public class NoContentNegotiatedContentResult : OkNegotiatedContentResult<object>
+    public class UnsupportedMediaTypeNegotiatedContentResult : OkNegotiatedContentResult<object>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="NoContentNegotiatedContentResult"/> class.
+        /// Initializes a new instance of the <see cref="UnsupportedMediaTypeNegotiatedContentResult"/> class.
         /// </summary>
         /// <param name="controller">
         /// The controller.
         /// </param>
-        public NoContentNegotiatedContentResult(ApiController controller)
+        public UnsupportedMediaTypeNegotiatedContentResult(ApiController controller)
             : base(null, controller)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NoContentNegotiatedContentResult"/> class.
+        /// Initializes a new instance of the <see cref="UnsupportedMediaTypeNegotiatedContentResult"/> class.
         /// </summary>
         /// <param name="contentNegotiator">
         /// The content negotiator.
@@ -46,7 +46,7 @@ namespace NSWRFS.Base.Api.Results
         /// <param name="formatters">
         /// The formatters.
         /// </param>
-        public NoContentNegotiatedContentResult(
+        public UnsupportedMediaTypeNegotiatedContentResult(
             IContentNegotiator contentNegotiator,
             HttpRequestMessage request,
             IEnumerable<MediaTypeFormatter> formatters)
@@ -66,7 +66,7 @@ namespace NSWRFS.Base.Api.Results
         public override async Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
         {
             var response = await base.ExecuteAsync(cancellationToken);
-            response.StatusCode = HttpStatusCode.NoContent;
+            response.StatusCode = HttpStatusCode.UnsupportedMediaType;
             return response;
         }
     }

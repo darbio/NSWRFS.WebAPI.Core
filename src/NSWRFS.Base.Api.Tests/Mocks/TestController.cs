@@ -42,5 +42,45 @@ namespace NSWRFS.Base.Api.Tests.Mocks
             // Return
             return base.NoContent();
         }
+
+        [Route("NotModified")]
+        [HttpPost]
+        public IHttpActionResult NotModified()
+        { 
+            // Return
+            return base.NotModified();
+        }
+
+        [Route("MethodNotAllowed")]
+        [HttpPost]
+        public IHttpActionResult MethodNotAllowed()
+        {
+            // Return
+            return base.MethodNotAllowed();
+        }
+
+        [Route("Gone")]
+        [HttpGet]
+        public IHttpActionResult Gone()
+        {
+            // Return
+            return base.Gone();
+        }
+
+        [Route("UnsupportedMediaType")]
+        [HttpGet]
+        public IHttpActionResult UnsupportedMediaType()
+        {
+            // Return
+            return base.UnsupportedMediaType();
+        }
+
+        [Route("UnprocessableEntity")]
+        [HttpPost]
+        public IHttpActionResult UnprocessableEntity()
+        {
+            // Return
+            return base.UnprocessibleEntity();
+        }
     }
 }

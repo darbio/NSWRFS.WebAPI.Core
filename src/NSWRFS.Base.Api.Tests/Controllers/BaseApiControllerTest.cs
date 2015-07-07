@@ -127,5 +127,151 @@
                 }
             }
         }
+
+        [TestMethod]
+        public void NotModified_Returns304_Always()
+        {
+            // Arrange
+            var config = new HttpConfiguration();
+            config.Routes.MapHttpRoute(
+                "Default",
+                "{controller}/{action}",
+                new
+                {
+                    controller = "Test",
+                    action = "NotModified"
+                });
+
+            var server = new HttpServer(config);
+
+            using (var client = new HttpMessageInvoker(server))
+            {
+                // Act
+                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/NotModified"))
+                using (var response = client.SendAsync(request, CancellationToken.None).Result)
+                {
+                    // Assert
+                    Assert.IsNotNull(response);
+                    Assert.AreEqual(response.StatusCode, HttpStatusCode.NotModified);
+                }
+            }
+        }
+
+
+        [TestMethod]
+        public void MethodNotAllowed_Returns405_Always()
+        {
+            // Arrange
+            var config = new HttpConfiguration();
+            config.Routes.MapHttpRoute(
+                "Default",
+                "{controller}/{action}",
+                new
+                {
+                    controller = "Test",
+                    action = "MethodNotAllowed"
+                });
+
+            var server = new HttpServer(config);
+
+            using (var client = new HttpMessageInvoker(server))
+            {
+                // Act
+                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/MethodNotAllowed"))
+                using (var response = client.SendAsync(request, CancellationToken.None).Result)
+                {
+                    // Assert
+                    Assert.IsNotNull(response);
+                    Assert.AreEqual(response.StatusCode, HttpStatusCode.MethodNotAllowed);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void Gone_Returns410_Always()
+        {
+            // Arrange
+            var config = new HttpConfiguration();
+            config.Routes.MapHttpRoute(
+                "Default",
+                "{controller}/{action}",
+                new
+                {
+                    controller = "Test",
+                    action = "Gone"
+                });
+
+            var server = new HttpServer(config);
+
+            using (var client = new HttpMessageInvoker(server))
+            {
+                // Act
+                using (var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost/Test/Gone"))
+                using (var response = client.SendAsync(request, CancellationToken.None).Result)
+                {
+                    // Assert
+                    Assert.IsNotNull(response);
+                    Assert.AreEqual(response.StatusCode, HttpStatusCode.Gone);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void UnsupportedMediaType_Returns415_Always()
+        {
+            // Arrange
+            var config = new HttpConfiguration();
+            config.Routes.MapHttpRoute(
+                "Default",
+                "{controller}/{action}",
+                new
+                {
+                    controller = "Test",
+                    action = "UnsupportedMediaType"
+                });
+
+            var server = new HttpServer(config);
+
+            using (var client = new HttpMessageInvoker(server))
+            {
+                // Act
+                using (var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost/Test/UnsupportedMediaType"))
+                using (var response = client.SendAsync(request, CancellationToken.None).Result)
+                {
+                    // Assert
+                    Assert.IsNotNull(response);
+                    Assert.AreEqual(response.StatusCode, HttpStatusCode.UnsupportedMediaType);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void UnprocessableEntity_Returns422_Always()
+        {
+            // Arrange
+            var config = new HttpConfiguration();
+            config.Routes.MapHttpRoute(
+                "Default",
+                "{controller}/{action}",
+                new
+                {
+                    controller = "Test",
+                    action = "UnprocessableEntity"
+                });
+
+            var server = new HttpServer(config);
+
+            using (var client = new HttpMessageInvoker(server))
+            {
+                // Act
+                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/UnprocessableEntity"))
+                using (var response = client.SendAsync(request, CancellationToken.None).Result)
+                {
+                    // Assert
+                    Assert.IsNotNull(response);
+                    Assert.AreEqual(response.StatusCode, (HttpStatusCode)422);
+                }
+            }
+        }
     }
 }
