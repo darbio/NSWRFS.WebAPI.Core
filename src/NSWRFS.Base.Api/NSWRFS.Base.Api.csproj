@@ -49,6 +49,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.4.0.1\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -188,7 +191,7 @@
     <Compile Include="ContractResolvers\LowerCaseDelimitedPropertyNamesContractResolver.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
-    <Compile Include="ExceptionLoggers\ExceptionLessExceptionLogger.cs" />
+    <Compile Include="ExceptionLoggers\NLogExceptionLogger.cs" />
     <Compile Include="Exceptions\BusinessException.cs" />
     <Compile Include="Filters\ExceptionHandlingAttribute.cs" />
     <Compile Include="Formatters\DefaultJsonFormatter.cs" />
@@ -221,7 +224,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
-    <Folder Include="ExceptionHandlers\" />
     <Folder Include="Providers\" />
   </ItemGroup>
   <ItemGroup>

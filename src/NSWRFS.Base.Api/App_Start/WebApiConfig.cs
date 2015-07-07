@@ -3,9 +3,11 @@
     using System.Linq;
     using System.Web.Configuration;
     using System.Web.Http;
+    using System.Web.Http.ExceptionHandling;
 
     using NSWRFS.Base.Api.App_Start;
     using NSWRFS.Base.Api.ContractResolvers;
+    using NSWRFS.Base.Api.ExceptionLoggers;
     using NSWRFS.Base.Api.Filters;
     using NSWRFS.Base.Api.Formatters;
 
@@ -25,6 +27,9 @@
 
             // Add Exception Handling filter
             config.Filters.Add(new ExceptionHandlingAttribute());
+
+            // Add NLog exception handler
+            config.Services.Add(typeof(IExceptionLogger), new NLogExceptionLogger());
 
             // Web API routes
             config.MapHttpAttributeRoutes();
