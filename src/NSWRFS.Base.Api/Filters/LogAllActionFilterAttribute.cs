@@ -9,6 +9,7 @@
 
 namespace NSWRFS.Base.Api.Filters
 {
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Web.Http.Controllers;
@@ -39,13 +40,14 @@ namespace NSWRFS.Base.Api.Filters
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
             // Form the log string
-            var requestString = actionContext.Request.ToString();
+            var requestString = actionContext.Request.ToString().Replace(Environment.NewLine, " ");
 
             var principle = actionContext.RequestContext.Principal;
             var username = principle.Identity.IsAuthenticated ? principle.Identity.GetUserName() : "anonymous";
 
             // Write a Log
-            Nlog.Log(LogLevel.Trace, string.Format("request : {0}, username : {1}", requestString, username));
+            var logObject = new { request = requestString, identity = username };
+            Nlog.Log(LogLevel.Trace, logObject);
         }
 
         /// <summary>
@@ -74,13 +76,14 @@ namespace NSWRFS.Base.Api.Filters
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
             // Form the log string
-            var responseString = actionExecutedContext.Response.ToString();
+            var responseString = actionExecutedContext.Response.ToString().Replace(Environment.NewLine, " ");
 
             var principle = actionExecutedContext.ActionContext.RequestContext.Principal;
             var username = principle.Identity.IsAuthenticated ? principle.Identity.GetUserName() : "anonymous";
 
             // Write a Log
-            Nlog.Log(LogLevel.Trace, string.Format("request : {0}, username : {1}", responseString, username));
+            var logObject = new { response = responseString, identity = username };
+            Nlog.Log(LogLevel.Trace, logObject);
         }
 
         /// <summary>

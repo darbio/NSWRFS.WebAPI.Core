@@ -18,7 +18,10 @@ This is the NSW RFS Web API base template. It provides the following features:
 
 ## Logging
 
-This project uses NLog for logging.
+This project uses NLog for logging to the following targets:
+
+* Local file (TRACE and above)
+* ExceptionLess (INFO and above)
 
 The `BaseApiController` has an `NLog` property which can be used for writing logs.
 
@@ -35,6 +38,8 @@ public IHttpActionResult Post(EntityViewModel_POST viewmodel)
 	...
 }
 ```
+
+In addition, each request and response from the API are logged as an `Trace` message by the `LogAllActionFilter`.
 
 ## Error responses
 
