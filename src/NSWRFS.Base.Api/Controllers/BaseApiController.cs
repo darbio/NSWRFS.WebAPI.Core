@@ -17,6 +17,8 @@ namespace NSWRFS.Base.Api.Controllers
     using System.Web.Http;
     using System.Web.Http.Results;
 
+    using NLog;
+
     using NSWRFS.Base.Api.Results;
 
     /// <summary>
@@ -24,6 +26,11 @@ namespace NSWRFS.Base.Api.Controllers
     /// </summary>
     public abstract class BaseApiController : ApiController
     {
+        /// <summary>
+        /// The NLog logger.
+        /// </summary>
+        private static readonly Logger Nlog = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// The not modified.
         /// </summary>

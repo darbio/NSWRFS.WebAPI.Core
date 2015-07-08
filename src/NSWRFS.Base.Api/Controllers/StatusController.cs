@@ -53,7 +53,7 @@ namespace NSWRFS.Base.Api.Controllers
             {
                 IsHealthy = isHealthy
             };
-            throw new BusinessException("Message from james");
+
             // Return the health object
             // HTTP 200 OK
             return this.Ok(health);

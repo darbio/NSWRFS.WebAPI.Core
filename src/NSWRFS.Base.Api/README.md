@@ -16,6 +16,32 @@ This is the NSW RFS Web API base template. It provides the following features:
 4. Routes are specified using attributes and are versioned (e.g. /api/v1/controller/action).
 5. We deal with JSON return types by default.
 
+## Logging
+
+This project uses NLog for logging.
+
+The `BaseApiController` has an `NLog` property which can be used for writing logs.
+
+An exception logger is registered into the web application which will log all unhandled exceptions to NLog. This is implemented in `NLogExceptionHandler`.
+
+```
+public IHttpActionResult Post(EntityViewModel_POST viewmodel)
+{
+    ...
+
+    // Make a log entry
+	Nlog.Log(LogLevel.Info, "I'm a genie in a bottle, baby.");
+
+	...
+}
+```
+
+## Error responses
+
+A global exception filter `ExceptionHandlingAttribute` is implemented on all `ApiControllers`, this will process a 500 error response to the Api client.
+
+If the exception type thrown is inherant from `BusinessException` the exception message will be shown to the client. If not, a generic 500 error is shown. This is by design and protects the internals of the application.
+
 ## API Methods
 
 All API methods should return `IHttpActionResults`. The `BaseApiController` defines an extended number of methods to help with this.
@@ -28,7 +54,7 @@ public IHttpActionResult Validate(EntityViewModel_POST viewmodel)
     // Validate the viewmodel
 	if (!IsValid(viewmodel))
 	{
-		return base.UnprocessibleEntity();
+		return this.UnprocessibleEntity();
 	}
 
 	...

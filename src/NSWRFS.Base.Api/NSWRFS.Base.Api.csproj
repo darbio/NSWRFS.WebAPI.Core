@@ -194,6 +194,7 @@
     <Compile Include="ExceptionLoggers\NLogExceptionLogger.cs" />
     <Compile Include="Exceptions\BusinessException.cs" />
     <Compile Include="Filters\ExceptionHandlingAttribute.cs" />
+    <Compile Include="Filters\LogAllActionFilterAttribute.cs" />
     <Compile Include="Formatters\DefaultJsonFormatter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

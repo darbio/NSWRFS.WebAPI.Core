@@ -25,6 +25,9 @@
                 SymmetricKey = clientSecret
             });
 
+            // Ad request and response logging filter
+            config.Filters.Add(new LogAllActionFilterAttribute());
+
             // Add Exception Handling filter
             config.Filters.Add(new ExceptionHandlingAttribute());
 
