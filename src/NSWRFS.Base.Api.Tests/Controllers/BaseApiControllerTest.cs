@@ -65,7 +65,7 @@
             // Assert
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result.Content.Count);
-            Assert.AreEqual("quisquam", result.Content[1]);
+            Assert.AreEqual("quisquam", result.Content[0]);
             Assert.AreEqual("est", result.Content[1]);
         }
 
@@ -270,7 +270,6 @@
                     // Assert
                     Assert.IsNotNull(response);
                     Assert.AreEqual(response.ReasonPhrase, "Critical Exception");
-                    Assert.AreEqual(response.Content.ReadAsStringAsync().Result, "An error occurred. Please try again or contact the administrator.");
                     Assert.AreEqual(response.StatusCode, HttpStatusCode.InternalServerError);
                 }
             }
@@ -301,7 +300,6 @@
                     // Assert
                     Assert.IsNotNull(response);
                     Assert.AreEqual(response.ReasonPhrase, "Exception");
-                    Assert.AreEqual(response.Content.ReadAsStringAsync().Result, "This is a test business exception");
                     Assert.AreEqual(response.StatusCode, HttpStatusCode.InternalServerError);
                 }
             }

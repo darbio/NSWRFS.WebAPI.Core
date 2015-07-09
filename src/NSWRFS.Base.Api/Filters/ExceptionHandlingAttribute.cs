@@ -11,12 +11,14 @@ namespace NSWRFS.Base.Api.Filters
 {
     using System.Net;
     using System.Net.Http;
+    using System.Net.Http.Formatting;
     using System.Threading;
     using System.Threading.Tasks;
     using System.Web.Http;
     using System.Web.Http.Filters;
 
     using NSWRFS.Base.Api.Exceptions;
+    using NSWRFS.Base.Api.Models;
 
     /// <summary>
     /// The exception handling attribute.
@@ -30,25 +32,34 @@ namespace NSWRFS.Base.Api.Filters
         /// The action executed context.
         /// </param>
         /// <exception cref="HttpResponseException">
+        /// HttpResponseException
         /// </exception>
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {
             // If this is a business level exception, show it to the client.
             if (actionExecutedContext.Exception is BusinessException)
             {
-                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.InternalServerError)
-                {
-                    Content = new StringContent(actionExecutedContext.Exception.Message),
-                    ReasonPhrase = "Exception"
-                });
-            }
+                var exception = actionExecutedContext.Exception as BusinessException;
+                var viewModel = new ErrorViewModel_ALL(exception);
 
-            // Show a generic exception to the end user
-            throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.InternalServerError)
+                throw new HttpResponseException(
+                    new HttpResponseMessage(HttpStatusCode.InternalServerError)
+                    {
+                        Content = new ObjectContent(typeof(ErrorViewModel_ALL), viewModel, new JsonMediaTypeFormatter()),
+                        ReasonPhrase = viewModel.Description
+                    });
+            }
+            else
             {
-                Content = new StringContent(string.Format("An error occurred. Please try again or contact the administrator.")),
-                ReasonPhrase = "Critical Exception"
-            });
+                // Show a generic exception to the end user
+                var viewModel = new ErrorViewModel_ALL(actionExecutedContext.Exception);
+                throw new HttpResponseException(
+                    new HttpResponseMessage(HttpStatusCode.InternalServerError)
+                    {
+                        Content = new ObjectContent(typeof(ErrorViewModel_ALL), viewModel, new JsonMediaTypeFormatter()),
+                        ReasonPhrase = viewModel.Description
+                    });
+            }
         }
 
         /// <summary>

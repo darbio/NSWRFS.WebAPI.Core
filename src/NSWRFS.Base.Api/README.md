@@ -9,7 +9,7 @@ This is the NSW RFS Web API base template. It provides the following features:
 * CORS is enabled for URLs identified in the Web.Config NSWRFS.CorsAllowedOrigins setting.
 * JSON underscores serializer for viewmodels.
 * NLog with file (TRACE) and Exceptionless (INFO) targets.
-* Implemented WebAPI `IHttpActionResult`s for use in teh API.
+* Implemented WebAPI `IHttpActionResult`s for use in th API.
 
 ## General rules
 
