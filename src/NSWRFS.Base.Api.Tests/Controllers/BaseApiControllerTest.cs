@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Net;
     using System.Net.Http;
+    using System.Net.Http.Formatting;
     using System.Threading;
     using System.Web.Http;
     using System.Web.Http.Controllers;
@@ -118,7 +119,7 @@
             using (var client = new HttpMessageInvoker(server))
             {
                 // Act
-                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/NoContent"))
+                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/NoContent_Action"))
                 using (var response = client.SendAsync(request, CancellationToken.None).Result)
                 {
                     // Assert
@@ -147,7 +148,7 @@
             using (var client = new HttpMessageInvoker(server))
             {
                 // Act
-                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/NotModified"))
+                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/NotModified_Action"))
                 using (var response = client.SendAsync(request, CancellationToken.None).Result)
                 {
                     // Assert
@@ -177,7 +178,7 @@
             using (var client = new HttpMessageInvoker(server))
             {
                 // Act
-                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/MethodNotAllowed"))
+                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/MethodNotAllowed_Action"))
                 using (var response = client.SendAsync(request, CancellationToken.None).Result)
                 {
                     // Assert
@@ -206,7 +207,7 @@
             using (var client = new HttpMessageInvoker(server))
             {
                 // Act
-                using (var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost/Test/Gone"))
+                using (var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost/Test/Gone_Action"))
                 using (var response = client.SendAsync(request, CancellationToken.None).Result)
                 {
                     // Assert
@@ -235,7 +236,7 @@
             using (var client = new HttpMessageInvoker(server))
             {
                 // Act
-                using (var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost/Test/UnsupportedMediaType"))
+                using (var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost/Test/UnsupportedMediaType_Action"))
                 using (var response = client.SendAsync(request, CancellationToken.None).Result)
                 {
                     // Assert
@@ -264,7 +265,7 @@
             using (var client = new HttpMessageInvoker(server))
             {
                 // Act
-                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/Exception"))
+                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/Exception_Action"))
                 using (var response = client.SendAsync(request, CancellationToken.None).Result)
                 {
                     // Assert
@@ -294,13 +295,46 @@
             using (var client = new HttpMessageInvoker(server))
             {
                 // Act
-                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/BusinessException"))
+                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/BusinessException_Action"))
                 using (var response = client.SendAsync(request, CancellationToken.None).Result)
                 {
                     // Assert
                     Assert.IsNotNull(response);
                     Assert.AreEqual(response.ReasonPhrase, "Exception");
                     Assert.AreEqual(response.StatusCode, HttpStatusCode.InternalServerError);
+                }
+            }
+        }
+
+        [TestMethod]
+        public void ValidationError_Returns422_Always()
+        {
+            // Arrange
+            var viewmodel = new PersonViewModel_POST()
+            {
+                FirstName = null,
+                LastName = "Smith",
+                EmailAddress = "www.google.com"
+            };
+
+            var config = new HttpConfiguration();
+            config.Routes.MapHttpRoute("Default", "{controller}/{action}");
+
+            var server = new HttpServer(config);
+
+            using (var client = new HttpMessageInvoker(server))
+            {
+                // Act
+                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/UnprocessableEntity_Action")
+                {
+                    Content = new ObjectContent(typeof(PersonViewModel_POST), viewmodel, new JsonMediaTypeFormatter())
+                })
+                using (var response = client.SendAsync(request, CancellationToken.None).Result)
+                {
+                    // Assert
+                    Assert.IsNotNull(response);
+                    Assert.AreEqual(response.ReasonPhrase, "Unprocessable Entity");
+                    Assert.AreEqual(response.StatusCode, (HttpStatusCode)422);
                 }
             }
         }

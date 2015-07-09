@@ -31,6 +31,11 @@ namespace NSWRFS.Base.Api.Controllers
         /// </summary>
         private static readonly Logger Nlog = LogManager.GetCurrentClassLogger();
 
+        protected internal virtual UnprocessableEntityNegotiatedContentResult UnprocessableEntity()
+        {
+            return new UnprocessableEntityNegotiatedContentResult(this);
+        }
+
         /// <summary>
         /// The unsupported media type.
         /// </summary>

@@ -37,66 +37,72 @@ namespace NSWRFS.Base.Api.Tests.Mocks
             return this.Created(new Uri("http://localhost/Test/1"), new { foo = "bar" });
         }
 
-        [Route("NoContent")]
         [HttpPost]
-        public IHttpActionResult NoContent()
+        public IHttpActionResult NoContent_Action()
         {
             // Return
-            return base.NoContent();
+            return this.NoContent();
         }
 
-        [Route("NotModified")]
         [HttpPost]
-        public IHttpActionResult NotModified()
+        public IHttpActionResult NotModified_Action()
         { 
             // Return
-            return base.NotModified();
+            return this.NotModified();
         }
 
-        [Route("MethodNotAllowed")]
         [HttpPost]
-        public IHttpActionResult MethodNotAllowed()
+        public IHttpActionResult MethodNotAllowed_Action()
         {
             // Return
-            return base.MethodNotAllowed();
+            return this.MethodNotAllowed();
         }
 
-        [Route("Gone")]
         [HttpGet]
-        public IHttpActionResult Gone()
+        public IHttpActionResult Gone_Action()
         {
             // Return
-            return base.Gone();
+            return this.Gone();
         }
 
-        [Route("UnsupportedMediaType")]
         [HttpGet]
-        public IHttpActionResult UnsupportedMediaType()
+        public IHttpActionResult UnsupportedMediaType_Action()
         {
             // Return
-            return base.UnsupportedMediaType();
+            return this.UnsupportedMediaType();
         }
 
-        [Route("Exception")]
         [HttpPost]
         [ExceptionHandling]
-        public IHttpActionResult Exception()
+        public IHttpActionResult Exception_Action()
         {
             throw new Exception("This is a test exception");
 
             // Return
-            return base.Ok();
+            return this.Ok();
         }
 
-        [Route("BusinessException")]
         [HttpPost]
         [ExceptionHandling]
-        public IHttpActionResult BusinessException()
+        public IHttpActionResult BusinessException_Action()
         {
             throw new BusinessException("This is a test business exception");
 
             // Return
-            return base.Ok();
+            return this.Ok();
+        }
+
+        [HttpPost]
+        public IHttpActionResult UnprocessableEntity_Action(PersonViewModel_POST model)
+        {
+            if (!ModelState.IsValid)
+            {
+                // Send a 422 response
+                return this.UnprocessableEntity();
+            }
+
+            // Return
+            return this.Ok();
         }
     }
 }

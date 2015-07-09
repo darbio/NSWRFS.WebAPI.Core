@@ -207,6 +207,8 @@
     </Compile>
     <Compile Include="Models\ErrorViewModel_ALL.cs" />
     <Compile Include="Models\HealthViewModel_GET.cs" />
+    <Compile Include="Models\ValidationFieldViewModel_ALL.cs" />
+    <Compile Include="Models\ValidationViewModel_ALL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Results\UnprocessableEntityNegotiatedContentResult.cs" />

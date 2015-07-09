@@ -30,6 +30,7 @@ HTTP Status Code | Controller method | Description
 405 Method not allowed | MethodNotAllowed() | When a HTTP method is being requested which is not allowed by the current user
 410 Gone | Gone() | The resource at this endpoint is no longer available (Not to be confused with a 404).
 415 Unsupported Media Type | UnsupportedMediaType() | If incorrect content type was provided as part of the request
+422 Unprocessable Entity | UnsupportedEntity() | If validation failed
 
 ### List Response
 
@@ -39,6 +40,48 @@ This is a paginated list response with the following headers:
 * `X-Current-Page` the current page index represented as an integer of the total page count.
 * `X-Total-Count` the total number of items in a dataset.
 * `Link` a link which contains the pagniation options for the first, last, previous and next pages in a dataset.
+
+### Validation & Unprocessable Entity Response
+
+Validation is performed using the in built `ModelState` binder.
+
+```
+[HttpPost]
+public IHttpActionResult CreatePerson(PersonViewModel_POST model)
+{
+    if (!ModelState.IsValid)
+    {
+        // Send a 422 response
+        return this.UnprocessableEntity();
+    }
+
+	// Do the do
+	...
+
+    // Return
+    return this.Created(Uri("https://www.rfs.nsw.gov.au/api/v1/people/1234"), person)
+}
+```
+
+The Unprocessable Entity Response includes the ModelState errors. It is automatically created when `this.UnprocessableEntity()` is called.
+
+The JSON response looks like this:
+
+```
+{
+  "message" : "A validation error occurred.",
+  "description" : "Validation Failed",
+  "errors" : [
+  {
+    "field_name" : "FirstName",
+	"message" : "First Name must begin with J"
+  },
+  {
+    "field_name" : "FirstName",
+	"message" : "First Name can't be too fancy"
+  }]
+}
+```
 
 ## Logging
 
@@ -81,9 +124,9 @@ For example:
 public IHttpActionResult Validate(EntityViewModel_POST viewmodel)
 {
     // Validate the viewmodel
-	if (!IsValid(viewmodel))
+	if (!ModelState.IsValid)
 	{
-		return this.UnprocessibleEntity();
+		return this.UnprocessibleEntity(ModelState);
 	}
 
 	...
