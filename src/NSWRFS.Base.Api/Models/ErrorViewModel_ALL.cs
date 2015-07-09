@@ -61,17 +61,17 @@ namespace NSWRFS.Base.Api.Models
         }
 
         /// <summary>
-        /// Gets or sets the description.
+        /// Gets the description.
         /// </summary>
         public string Description { get; internal set; }
 
         /// <summary>
-        /// Gets or sets the code.
+        /// Gets the code.
         /// </summary>
         public string Code { get; internal set; }
 
         /// <summary>
-        /// Gets or sets the message.
+        /// Gets the message.
         /// </summary>
         public string Message { get; internal set; }
     }

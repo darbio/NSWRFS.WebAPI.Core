@@ -32,7 +32,7 @@ namespace NSWRFS.Base.Api.Filters
         /// The action executed context.
         /// </param>
         /// <exception cref="HttpResponseException">
-        /// HttpResponseException
+        /// HttpResponseException containing the ErrorViewModel_ALL instance
         /// </exception>
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {

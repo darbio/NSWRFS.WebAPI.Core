@@ -1,14 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BusinessException.cs" company="NSW RFS">
+//   Copyright 2014 NSW Rural Fire Service, NSW Government, Australia
+// </copyright>
+// <summary>
+//   Defines the BusinessException type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace NSWRFS.Base.Api.Exceptions
 {
+    using System;
+
+    /// <summary>
+    /// The business exception.
+    /// </summary>
     public class BusinessException : Exception
     {
-        public BusinessException(string message) : base(message) { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BusinessException"/> class.
+        /// </summary>
+        /// <param name="message">
+        /// The message.
+        /// </param>
+        public BusinessException(string message)
+            : base(message)
+        {
+        }
 
+        /// <summary>
+        /// Gets or sets the code.
+        /// </summary>
         public string Code { get; set; }
     }
 }
