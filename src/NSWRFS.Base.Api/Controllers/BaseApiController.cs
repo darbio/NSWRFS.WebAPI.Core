@@ -32,21 +32,10 @@ namespace NSWRFS.Base.Api.Controllers
         private static readonly Logger Nlog = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// The not modified.
+        /// The unsupported media type.
         /// </summary>
         /// <returns>
-        /// The <see cref="NotModifiedNegotiatedContentResult"/>.
-        /// </returns>
-        protected internal virtual UnprocessableEntityNegotiatedContentResult UnprocessibleEntity()
-        {
-            return new UnprocessableEntityNegotiatedContentResult(this);
-        }
-
-        /// <summary>
-        /// The not modified.
-        /// </summary>
-        /// <returns>
-        /// The <see cref="NotModifiedNegotiatedContentResult"/>.
+        /// The <see cref="UnsupportedMediaTypeNegotiatedContentResult"/>.
         /// </returns>
         protected internal virtual UnsupportedMediaTypeNegotiatedContentResult UnsupportedMediaType()
         {
@@ -54,10 +43,10 @@ namespace NSWRFS.Base.Api.Controllers
         }
 
         /// <summary>
-        /// The not modified.
+        /// The gone.
         /// </summary>
         /// <returns>
-        /// The <see cref="NotModifiedNegotiatedContentResult"/>.
+        /// The <see cref="GoneNegotiatedContentResult"/>.
         /// </returns>
         protected internal virtual GoneNegotiatedContentResult Gone()
         {
@@ -65,10 +54,10 @@ namespace NSWRFS.Base.Api.Controllers
         }
 
         /// <summary>
-        /// The not modified.
+        /// The method not allowed.
         /// </summary>
         /// <returns>
-        /// The <see cref="NotModifiedNegotiatedContentResult"/>.
+        /// The <see cref="MethodNotAllowedNegotiatedContentResult"/>.
         /// </returns>
         protected internal virtual MethodNotAllowedNegotiatedContentResult MethodNotAllowed()
         {

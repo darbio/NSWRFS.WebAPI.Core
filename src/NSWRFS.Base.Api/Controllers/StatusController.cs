@@ -7,8 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-
-
 namespace NSWRFS.Base.Api.Controllers
 {
     using System.Web.Http;
@@ -20,7 +18,8 @@ namespace NSWRFS.Base.Api.Controllers
     /// The status controller.
     /// </summary>
     [RoutePrefix("api")]
-    public class StatusController : ApiController
+    [AllowAnonymous]
+    public class StatusController : BaseApiController
     {
         /// <summary>
         /// A HTTP ping endpoint. Always returns 200 OK if the application is up.

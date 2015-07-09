@@ -6,6 +6,7 @@
     using System.Web.Http.ExceptionHandling;
 
     using NSWRFS.Base.Api.App_Start;
+    using NSWRFS.Base.Api.Attributes;
     using NSWRFS.Base.Api.ContractResolvers;
     using NSWRFS.Base.Api.ExceptionLoggers;
     using NSWRFS.Base.Api.Filters;
@@ -25,6 +26,10 @@
                 SymmetricKey = clientSecret
             });
 
+            // Add authorize to all routes
+            // Unless overriddeen by AllowAnonymousAttribute on the class level
+            config.Filters.Add(new AuthorizeAttribute());
+
             // Ad request and response logging filter
             config.Filters.Add(new LogAllActionFilterAttribute());
 
@@ -38,7 +43,7 @@
             config.MapHttpAttributeRoutes();
 
             // Allow CORS access from all NSW RFS Subdomains
-            config.EnableCors();
+            config.EnableCors(new NswRfsCorsPolicyAttribute());
 
             // Default to JSON
             config.Formatters.Add(new DefaultJsonFormatter());

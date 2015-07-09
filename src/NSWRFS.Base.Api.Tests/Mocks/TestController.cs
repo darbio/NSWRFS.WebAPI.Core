@@ -77,14 +77,6 @@ namespace NSWRFS.Base.Api.Tests.Mocks
             return base.UnsupportedMediaType();
         }
 
-        [Route("UnprocessableEntity")]
-        [HttpPost]
-        public IHttpActionResult UnprocessableEntity()
-        {
-            // Return
-            return base.UnprocessibleEntity();
-        }
-
         [Route("Exception")]
         [HttpPost]
         [ExceptionHandling]

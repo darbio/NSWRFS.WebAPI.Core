@@ -246,35 +246,6 @@
         }
 
         [TestMethod]
-        public void UnprocessableEntity_Returns422_Always()
-        {
-            // Arrange
-            var config = new HttpConfiguration();
-            config.Routes.MapHttpRoute(
-                "Default",
-                "{controller}/{action}",
-                new
-                {
-                    controller = "Test",
-                    action = "UnprocessableEntity"
-                });
-
-            var server = new HttpServer(config);
-
-            using (var client = new HttpMessageInvoker(server))
-            {
-                // Act
-                using (var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost/Test/UnprocessableEntity"))
-                using (var response = client.SendAsync(request, CancellationToken.None).Result)
-                {
-                    // Assert
-                    Assert.IsNotNull(response);
-                    Assert.AreEqual(response.StatusCode, (HttpStatusCode)422);
-                }
-            }
-        }
-
-        [TestMethod]
         public void Exception_Returns500_Always()
         {
             // Arrange

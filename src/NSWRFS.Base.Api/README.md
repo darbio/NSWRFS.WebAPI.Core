@@ -6,7 +6,10 @@ This is the NSW RFS Web API base template. It provides the following features:
 * Status (ping and health) endpoints.
 * Secrets.config for storing secret data not to be committed to a repository [see here](http://www.mattburkedev.com/keep-your-azure-secrets-safely-out-of-git/).
 * WebDeploy Package setup for AWS Elastic Beanstalk application.
-* CORS is enabled for *.rfs.nsw.gov.au.
+* CORS is enabled for URLs identified in the Web.Config NSWRFS.CorsAllowedOrigins setting.
+* JSON underscores serializer for viewmodels.
+* NLog with file (TRACE) and Exceptionless (INFO) targets.
+* Implemented WebAPI `IHttpActionResult`s for use in teh API.
 
 ## General rules
 
@@ -15,6 +18,27 @@ This is the NSW RFS Web API base template. It provides the following features:
 3. Do not include anything in the application code which you would not be happy with being publicly available.
 4. Routes are specified using attributes and are versioned (e.g. /api/v1/controller/action).
 5. We deal with JSON return types by default.
+
+## IHttpActionResults 
+
+The following `IHttpActionResult` methods are defined in the `BaseApiController`:
+
+HTTP Status Code | Controller method | Description
+-----------------|-------------------|------------
+200 OK | OkList<T>(T list) | Returns a 200 OK with a list and populated headers
+304 Not Modified | NotModified() | Used when HTTP caching headers are in play
+405 Method not allowed | MethodNotAllowed() | When a HTTP method is being requested which is not allowed by the current user
+410 Gone | Gone() | The resource at this endpoint is no longer available (Not to be confused with a 404).
+415 Unsupported Media Type | UnsupportedMediaType() | If incorrect content type was provided as part of the request
+
+### List Response
+
+This is a paginated list response with the following headers:
+
+* `X-Total-Page-Count` the total count of pages which the full dataset represents.
+* `X-Current-Page` the current page index represented as an integer of the total page count.
+* `X-Total-Count` the total number of items in a dataset.
+* `Link` a link which contains the pagniation options for the first, last, previous and next pages in a dataset.
 
 ## Logging
 
@@ -66,6 +90,14 @@ public IHttpActionResult Validate(EntityViewModel_POST viewmodel)
 }
 ```
 
+## CORS
+
+Generally Web APIs will be accessed from websites other than themselves. To allow this, this API project has a Web.Config setting (`NSWRFS.CorsAllowedOrigins`) which allows you to specify which hosts are allowed to request data from this API.
+
+The `NSWRFS.CorsAllowedOrigins` setting is a comma separated string of URLs, which are added to the API CORS allowed origins on startup. When the application is run in debug mode, all origins are allowed. This is implemented using compiler directives.
+
+For example: `https://www.rfs.nsw.gov.au,https://incidents.rfs.nsw.gov.au`.
+
 ## Models
 
 All controllers should transfer data via a view model, unless a specific type (e.g. string, bool, int etc.) is more pragmatic.
@@ -89,9 +121,15 @@ namespace NSWRFS.Base.Api.Models
 }
 ```
 
+When the object is serialized into JSON, the serializer uses underscore format. For example `IsHealthy` becomes `is_healthy`. This is performed by the `LowerCaseDelimitedPropertyNamesContractResolver`.
+
+## Authentication
+
+By default, all API controllers require authorization.
+
 ## Setting up your application
 
 1. Set up an Auth0 application.
-2. Put the Auth0 client secret and id into secrets.config. This is excluded by the `.gitignore`.
+2. Put the Auth0 client secret, Auth0 id and Exceptionless API key into secrets.config. This is excluded by the `.gitignore`.
 3. Put your controllers in the correct version folder under the `Controllers` folder (e.g. V1).
 4. Put your view models in the correct version folder under the `Models` folder (e.g. V1).
