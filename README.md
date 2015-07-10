@@ -13,7 +13,7 @@ This is the NSW RFS Web API base template. It provides the following features:
 
 ## General REST rules
 
-This base API adhered to the REST standards set out [here](REST-Rules).
+This base API adhered to the [NSW RFS REST standards](REST-Rules.md).
 
 ## General .Net WebAPI rules
 
