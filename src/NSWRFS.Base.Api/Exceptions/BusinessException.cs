@@ -9,27 +9,23 @@
 
 namespace NSWRFS.Base.Api.Exceptions
 {
+    using NSWRFS.WebAPI.Core.Exceptions;
     using System;
 
     /// <summary>
     /// The business exception.
     /// </summary>
-    public class BusinessException : Exception
+    public class ExampleException : BusinessException
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BusinessException"/> class.
+        /// Initializes a new instance of the <see cref="ExampleException"/> class.
         /// </summary>
         /// <param name="message">
         /// The message.
         /// </param>
-        public BusinessException(string message)
+        public ExampleException(string message)
             : base(message)
         {
         }
-
-        /// <summary>
-        /// Gets or sets the code.
-        /// </summary>
-        public string Code { get; set; }
     }
 }

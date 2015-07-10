@@ -15,12 +15,13 @@ namespace NSWRFS.Base.Api
     using System.Web.Http.ExceptionHandling;
 
     using NSWRFS.Base.Api.App_Start;
-    using NSWRFS.Base.Api.Attributes;
-    using NSWRFS.Base.Api.ContentNegotiators;
-    using NSWRFS.Base.Api.ContractResolvers;
-    using NSWRFS.Base.Api.ExceptionLoggers;
-    using NSWRFS.Base.Api.Filters;
-    using NSWRFS.Base.Api.Formatters;
+
+    using NSWRFS.WebAPI.Core.Filters;
+    using NSWRFS.WebAPI.Core.ExceptionLoggers;
+    using NSWRFS.WebAPI.Core.Attributes;
+    using NSWRFS.WebAPI.Core.Formatters;
+    using NSWRFS.WebAPI.Core.ContentNegotiators;
+    using NSWRFS.WebAPI.Core.ContractResolvers;
 
     /// <summary>
     /// The WebAPI config.

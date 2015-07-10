@@ -13,6 +13,7 @@ namespace NSWRFS.Base.Api.Controllers
 
     using NSWRFS.Base.Api.Exceptions;
     using NSWRFS.Base.Api.Models;
+    using NSWRFS.WebAPI.Core.Controllers;
 
     /// <summary>
     /// The status controller.

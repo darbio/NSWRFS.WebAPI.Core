@@ -193,32 +193,13 @@
     <Compile Include="App_Start\JsonWebTokenValidationHandler.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Attributes\NswRfsCorsPolicyAttribute.cs" />
-    <Compile Include="ContentNegotiators\JsonContentNegotiator.cs" />
-    <Compile Include="ContractResolvers\LowerCaseDelimitedPropertyNamesContractResolver.cs" />
-    <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
-    <Compile Include="ExceptionLoggers\NLogExceptionLogger.cs" />
     <Compile Include="Exceptions\BusinessException.cs" />
-    <Compile Include="Filters\ExceptionHandlingAttribute.cs" />
-    <Compile Include="Filters\LogAllActionFilterAttribute.cs" />
-    <Compile Include="Formatters\DefaultJsonFormatter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ErrorViewModel_ALL.cs" />
     <Compile Include="Models\HealthViewModel_GET.cs" />
-    <Compile Include="Models\ValidationFieldViewModel_ALL.cs" />
-    <Compile Include="Models\ValidationViewModel_ALL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Results\ChallengeResult.cs" />
-    <Compile Include="Results\UnprocessableEntityNegotiatedContentResult.cs" />
-    <Compile Include="Results\UnsupportedMediaTypeNegotiatedContentResult.cs" />
-    <Compile Include="Results\GoneNegotiatedContentResult.cs" />
-    <Compile Include="Results\MethodNotAllowedNegotiatedContentResult.cs" />
-    <Compile Include="Results\NotModifiedNegotiatedContentResult.cs" />
-    <Compile Include="Results\NoContentNegotiatedContentResult.cs" />
-    <Compile Include="Results\OkNegotiatedIListContentResult.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -235,7 +216,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
-    <Folder Include="Providers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -251,7 +231,12 @@
     </None>
     <None Include="Properties\PublishProfiles\NSW RFS.pubxml" />
     <Content Include="Secrets.config" />
-    <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NSWRFS.WebAPI.Core\NSWRFS.WebAPI.Core.csproj">
+      <Project>{1a0d341f-4c88-4204-b236-5228e59deed0}</Project>
+      <Name>NSWRFS.WebAPI.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
