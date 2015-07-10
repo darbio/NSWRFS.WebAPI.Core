@@ -5,6 +5,7 @@
     <version>1.0.0</version>
     <authors>NSW Rural Fire Service</authors>
     <description>Core package for all NSW RFS Web API projects.</description>
+    <copyright>Copyright 2015 NSW Rural Fire Service</copyright>
     <language>en-US</language>
     <projectUrl>https://github.com/NSWRFS/NSWRFS.WebAPI.Core</projectUrl>
     <iconUrl>http://tinyurl.com/oor95v9</iconUrl>
