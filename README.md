@@ -1,8 +1,8 @@
 # NSW RFS Web API base template
 
-[![Build status](https://ci.appveyor.com/api/projects/status/1v6ski9047dcbm0j/branch/develop?svg=true)](https://ci.appveyor.com/project/NSWRuralFireService38646/nswrfs-webapi-core/branch/develop)
+[![Build status](https://ci.appveyor.com/api/projects/status/1v6ski9047dcbm0j/branch/master?svg=true)](https://ci.appveyor.com/project/NSWRuralFireService38646/nswrfs-webapi-core/branch/master)
 
-This is the NSW RFS Web API base template. It provides the following features:
+This is the NSW RFS Web API Core library. It provides the following features:
 
 * Auth0 integration.
 * Status (ping and health) endpoints.
@@ -143,7 +143,7 @@ public IHttpActionResult Validate(EntityViewModel_POST viewmodel)
 
 Generally Web APIs will be accessed from websites other than themselves. To allow this, this API project has a Web.Config setting (`NSWRFS.CorsAllowedOrigins`) which allows you to specify which hosts are allowed to request data from this API.
 
-The `NSWRFS.CorsAllowedOrigins` setting is a comma separated string of URLs, which are added to the API CORS allowed origins on startup. When the application is run in debug mode, all origins are allowed. This is implemented using compiler directives.
+The `NSWRFS.CorsAllowedOrigins` setting is a comma separated string of URLs, which are added to the API CORS allowed origins on startup.
 
 For example: `https://www.rfs.nsw.gov.au,https://incidents.rfs.nsw.gov.au`.
 
