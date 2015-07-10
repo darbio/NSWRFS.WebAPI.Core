@@ -1,1 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8" ?> 
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>NSWRFS.WebAPI.Core</id>
+    <version>1.0.0</version>
+    <authors>NSW Rural Fire Service</authors>
+    <description>Core package for all NSW RFS Web API projects.</description>
+    <language>en-US</language>
+    <projectUrl>https://github.com/NSWRFS/NSWRFS.WebAPI.Core</projectUrl>
+    <iconUrl>https://secure.gravatar.com/avatar/ca6577c7e2bb71f7ae720d39459c29d0?s=32&r=g&d=retro</iconUrl>
+    <licenseUrl>https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html</licenseUrl>
+  </metadata>
+</package>
