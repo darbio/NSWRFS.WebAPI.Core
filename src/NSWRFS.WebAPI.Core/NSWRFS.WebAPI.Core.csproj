@@ -124,6 +124,7 @@
   <ItemGroup>
     <Content Include="Controllers\V1\README.md" />
     <None Include="app.config" />
+    <None Include="NSWRFS.WebAPI.Core.nuspec" />
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>
