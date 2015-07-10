@@ -11,57 +11,26 @@ namespace NSWRFS.Base.Api.Results
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Net.Http;
     using System.Net.Http.Formatting;
     using System.Threading;
     using System.Threading.Tasks;
-    using System.Web;
-    using System.Collections;
     using System.Web.Http;
     using System.Web.Http.Results;
 
     /// <summary>
     /// The ok negotiated i enumerable content result.
     /// </summary>
-    /// <typeparam name="T">
+    /// <typeparam name="T1">
     /// IList object
     /// </typeparam>
-    public class OkNegotiatedIListContentResult<T, U> : OkNegotiatedContentResult<T> where T : IList<U>
+    /// <typeparam name="T2">
+    /// The type in the IList
+    /// </typeparam>
+    public class OkNegotiatedIListContentResult<T1, T2> : OkNegotiatedContentResult<T1> where T1 : IList<T2>
     {
         /// <summary>
-        /// Gets or sets the first page uri.
-        /// </summary>
-        public Uri FirstPageUri { get; set; }
-
-        /// <summary>
-        /// Gets or sets the previous page uri.
-        /// </summary>
-        public Uri PreviousPageUri { get; set; }
-
-        /// <summary>
-        /// Gets or sets the next page uri.
-        /// </summary>
-        public Uri NextPageUri { get; set; }
-
-        /// <summary>
-        /// Gets or sets the last page uri.
-        /// </summary>
-        public Uri LastPageUri { get; set; }
-
-        /// <summary>
-        /// Gets or sets the total page count.
-        /// </summary>
-        public int TotalPageCount { get; set; }
-
-        /// <summary>
-        /// Gets or sets the current page index.
-        /// </summary>
-        public int CurrentPageIndex { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="OkNegotiatedIListContentResult{T}"/> class, setting the Uri's specifically
-        /// 
+        /// Initializes a new instance of the <see cref="OkNegotiatedIListContentResult{T1,T2}"/> class. 
         /// </summary>
         /// <param name="content">
         /// The content.
@@ -88,7 +57,7 @@ namespace NSWRFS.Base.Api.Results
         /// The page count.
         /// </param>
         public OkNegotiatedIListContentResult(
-            T content,
+            T1 content,
             ApiController controller,
             Uri firstPageUri,
             Uri previousPageUri,
@@ -107,7 +76,7 @@ namespace NSWRFS.Base.Api.Results
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OkNegotiatedIListContentResult{T}"/> class.
+        /// Initializes a new instance of the <see cref="OkNegotiatedIListContentResult{T1,T2}"/> class.
         /// </summary>
         /// <param name="content">
         /// The content.
@@ -140,7 +109,7 @@ namespace NSWRFS.Base.Api.Results
         /// The page count.
         /// </param>
         public OkNegotiatedIListContentResult(
-            T content,
+            T1 content,
             IContentNegotiator contentNegotiator,
             HttpRequestMessage request,
             IEnumerable<MediaTypeFormatter> formatters,
@@ -159,6 +128,36 @@ namespace NSWRFS.Base.Api.Results
             this.CurrentPageIndex = currentPageIndex;
             this.TotalPageCount = pageCount;
         }
+
+        /// <summary>
+        /// Gets or sets the first page uri.
+        /// </summary>
+        public Uri FirstPageUri { get; set; }
+
+        /// <summary>
+        /// Gets or sets the previous page uri.
+        /// </summary>
+        public Uri PreviousPageUri { get; set; }
+
+        /// <summary>
+        /// Gets or sets the next page uri.
+        /// </summary>
+        public Uri NextPageUri { get; set; }
+
+        /// <summary>
+        /// Gets or sets the last page uri.
+        /// </summary>
+        public Uri LastPageUri { get; set; }
+
+        /// <summary>
+        /// Gets or sets the total page count.
+        /// </summary>
+        public int TotalPageCount { get; set; }
+
+        /// <summary>
+        /// Gets or sets the current page index.
+        /// </summary>
+        public int CurrentPageIndex { get; set; }
 
         /// <summary>
         /// The execute async.

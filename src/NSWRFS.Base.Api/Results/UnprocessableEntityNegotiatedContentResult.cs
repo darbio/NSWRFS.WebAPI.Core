@@ -22,6 +22,7 @@ namespace NSWRFS.Base.Api.Results
 
     using NSWRFS.Base.Api.Formatters;
     using NSWRFS.Base.Api.Models;
+    using NSWRFS.Base.Api.ContractResolvers;
 
     using WebGrease.Css.Extensions;
 
@@ -94,7 +95,7 @@ namespace NSWRFS.Base.Api.Results
                                let errors = this.modelState[key]
                                from error in errors.Errors
                                select
-                                   new ValidationFieldViewModel_ALL() { FieldName = key, Message = error.ErrorMessage })
+                                   new ValidationFieldViewModel_ALL() { FieldName = key.ToDelimitedString('_'), Message = error.ErrorMessage })
                 .ToList();
 
             // Construct the return content

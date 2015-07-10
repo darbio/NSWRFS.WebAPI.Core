@@ -31,6 +31,12 @@ namespace NSWRFS.Base.Api.Controllers
         /// </summary>
         private static readonly Logger Nlog = LogManager.GetCurrentClassLogger();
 
+        /// <summary>
+        /// The unprocessable entity.
+        /// </summary>
+        /// <returns>
+        /// The <see cref="UnprocessableEntityNegotiatedContentResult"/>.
+        /// </returns>
         protected internal virtual UnprocessableEntityNegotiatedContentResult UnprocessableEntity()
         {
             return new UnprocessableEntityNegotiatedContentResult(this);

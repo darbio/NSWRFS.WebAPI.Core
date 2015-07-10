@@ -194,6 +194,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Attributes\NswRfsCorsPolicyAttribute.cs" />
+    <Compile Include="ContentNegotiators\JsonContentNegotiator.cs" />
     <Compile Include="ContractResolvers\LowerCaseDelimitedPropertyNamesContractResolver.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\StatusController.cs" />

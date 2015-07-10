@@ -338,5 +338,27 @@
                 }
             }
         }
+
+        //[TestMethod]
+        //public void Sort_Returns200List_Always()
+        //{
+        //    // Arrange
+        //    var config = new HttpConfiguration();
+        //    config.Routes.MapHttpRoute("Default", "{controller}/{action}");
+
+        //    var server = new HttpServer(config);
+
+        //    using (var client = new HttpMessageInvoker(server))
+        //    {
+        //        // Act
+        //        using (var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost/Test/GetPeopleSort_Action?page=1&per_page=2&sort=-first_name,date_of_birth"))
+        //        using (var response = client.SendAsync(request, CancellationToken.None).Result)
+        //        {
+        //            // Assert
+        //            Assert.IsNotNull(response);
+        //            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
+        //        }
+        //    }
+        //}
     }
 }

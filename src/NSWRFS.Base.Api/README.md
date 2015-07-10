@@ -73,11 +73,11 @@ The JSON response looks like this:
   "description" : "Validation Failed",
   "errors" : [
   {
-    "field_name" : "FirstName",
+    "field_name" : "first_name",
 	"message" : "First Name must begin with J"
   },
   {
-    "field_name" : "FirstName",
+    "field_name" : "first_name",
 	"message" : "First Name can't be too fancy"
   }]
 }
