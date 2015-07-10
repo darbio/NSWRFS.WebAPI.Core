@@ -160,7 +160,7 @@ HTTP defines a bunch of meaningful status codes that can be returned from your A
 
 # References
 
-1. [[Best Practices for Designing a Pragmatic RESTful API|http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api]]
-2. [[Creating Help Pages for ASP.NET Web API|http://www.asp.net/web-api/overview/creating-web-apis/creating-api-help-pages]]
-3. [[ASP.NET Web API: Using Namespaces to Version Web APIs|http://blogs.msdn.com/b/webdev/archive/2013/03/08/using-namespaces-to-version-web-apis.aspx]]
-4. [[Web API Design Crafting Interfaces that Developers Love|http://info.apigee.com/Portals/62317/docs/web%20api.pdf]]
+1. [Best Practices for Designing a Pragmatic RESTful API](http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api)
+2. [Creating Help Pages for ASP.NET Web API](http://www.asp.net/web-api/overview/creating-web-apis/creating-api-help-pages)
+3. [ASP.NET Web API: Using Namespaces to Version Web APIs](http://blogs.msdn.com/b/webdev/archive/2013/03/08/using-namespaces-to-version-web-apis.aspx)
+4. [Web API Design Crafting Interfaces that Developers Love](http://info.apigee.com/Portals/62317/docs/web%20api.pdf)
