@@ -10,7 +10,6 @@
 namespace NSWRFS.Base.Api.Exceptions
 {
     using NSWRFS.WebAPI.Core.Exceptions;
-    using System;
 
     /// <summary>
     /// The business exception.

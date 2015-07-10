@@ -11,7 +11,6 @@ namespace NSWRFS.Base.Api.Controllers
 {
     using System.Web.Http;
 
-    using NSWRFS.Base.Api.Exceptions;
     using NSWRFS.Base.Api.Models;
     using NSWRFS.WebAPI.Core.Controllers;
 
