@@ -173,10 +173,3 @@ When the object is serialized into JSON, the serializer uses underscore format. 
 ## Authentication
 
 By default, all API controllers require authorization.
-
-## Setting up your application
-
-1. Set up an Auth0 application.
-2. Put the Auth0 client secret, Auth0 id and Exceptionless API key into secrets.config. This is excluded by the `.gitignore`.
-3. Put your controllers in the correct version folder under the `Controllers` folder (e.g. V1).
-4. Put your view models in the correct version folder under the `Models` folder (e.g. V1).
