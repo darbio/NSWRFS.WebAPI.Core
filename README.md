@@ -1,5 +1,7 @@
 # NSW RFS Web API base template
 
+[![Build status](https://ci.appveyor.com/api/projects/status/1v6ski9047dcbm0j/branch/develop?svg=true)](https://ci.appveyor.com/project/NSWRuralFireService38646/nswrfs-webapi-core/branch/develop)
+
 This is the NSW RFS Web API base template. It provides the following features:
 
 * Auth0 integration.
