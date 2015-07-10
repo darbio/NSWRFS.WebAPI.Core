@@ -39,22 +39,18 @@ namespace NSWRFS.WebAPI.Core.Attributes
                 AllowAnyMethod = true,
                 AllowAnyHeader = true
             };
-#if DEBUG
-            // This allows CORS from all origins
-            // This is only compiled into the app in DEBUG mode
-            this.corsPolicy.AllowAnyOrigin = true;
-#else
+
             // Add allowed origins from Web.Config.
             var allowedOrigins = WebConfigurationManager.AppSettings["NSWRFS.CorsAllowedOrigins"];
-
-            if (!string.IsNullOrEmpty(allowedOrigins))
+            if (string.IsNullOrEmpty(allowedOrigins))
             {
-                foreach (var origin in allowedOrigins.Split(',').Where(a => !String.IsNullOrEmpty(a)))
-                {
-                    this.corsPolicy.Origins.Add(origin);
-                }
+                return;
             }
-#endif
+
+            foreach (var origin in allowedOrigins.Split(',').Where(a => !string.IsNullOrEmpty(a)))
+            {
+                this.corsPolicy.Origins.Add(origin);
+            }
         }
 
         /// <summary>
