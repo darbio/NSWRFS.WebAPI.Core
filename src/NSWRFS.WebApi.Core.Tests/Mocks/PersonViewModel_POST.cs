@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace NSWRFS.Base.Api.Tests.Mocks
+namespace NSWRFS.WebAPI.Core.Tests.Mocks
 {
     using System;
     using System.ComponentModel.DataAnnotations;

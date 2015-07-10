@@ -1,4 +1,4 @@
-﻿namespace NSWRFS.Base.Api.Tests.Controllers
+﻿namespace NSWRFS.WebAPI.Core.Tests.Controllers
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -13,10 +13,8 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    using NSWRFS.Base.Api.Controllers;
-    using NSWRFS.Base.Api.Models;
-    using NSWRFS.Base.Api.Results;
-    using NSWRFS.Base.Api.Tests.Mocks;
+    using NSWRFS.WebAPI.Core.Tests.Mocks;
+    using NSWRFS.WebAPI.Core.Results;
 
     [TestClass]
     public class BaseApiControllerTest

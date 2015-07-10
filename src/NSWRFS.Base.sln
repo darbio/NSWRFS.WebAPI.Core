@@ -14,6 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C4DE7F
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSWRFS.WebAPI.Core", "NSWRFS.WebAPI.Core\NSWRFS.WebAPI.Core.csproj", "{1A0D341F-4C88-4204-B236-5228E59DEED0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NSWRFS.WebAPI.Core.Tests", "NSWRFS.WebApi.Core.Tests\NSWRFS.WebAPI.Core.Tests.csproj", "{0D19B43B-6E84-46C9-9BF7-CE0E05E25FA1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +32,14 @@ Global
 		{582BB49C-2566-422F-8650-8798DEBE9017}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{582BB49C-2566-422F-8650-8798DEBE9017}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{582BB49C-2566-422F-8650-8798DEBE9017}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A0D341F-4C88-4204-B236-5228E59DEED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A0D341F-4C88-4204-B236-5228E59DEED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A0D341F-4C88-4204-B236-5228E59DEED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A0D341F-4C88-4204-B236-5228E59DEED0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D19B43B-6E84-46C9-9BF7-CE0E05E25FA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D19B43B-6E84-46C9-9BF7-CE0E05E25FA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D19B43B-6E84-46C9-9BF7-CE0E05E25FA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D19B43B-6E84-46C9-9BF7-CE0E05E25FA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

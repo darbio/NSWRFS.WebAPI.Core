@@ -1,6 +1,9 @@
 ﻿
-namespace NSWRFS.Base.Api.Tests.Mocks
+namespace NSWRFS.WebAPI.Core.Tests.Mocks
 {
+    using NSWRFS.WebAPI.Core.Controllers;
+    using NSWRFS.WebAPI.Core.Exceptions;
+    using NSWRFS.WebAPI.Core.Filters;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -11,10 +14,6 @@ namespace NSWRFS.Base.Api.Tests.Mocks
     using System.Web.Http;
     using System.Web.ModelBinding;
     using System.Web.UI;
-
-    using NSWRFS.Base.Api.Controllers;
-    using NSWRFS.Base.Api.Exceptions;
-    using NSWRFS.Base.Api.Filters;
 
     /// <summary>
     /// The list test controller.

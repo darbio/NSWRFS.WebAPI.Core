@@ -11,7 +11,7 @@
     public class StatusControllerTest
     {
         [TestMethod]
-        public void Ping()
+        public void Ping_ReturnsOk_Always()
         {
             // Arrange
             var controller = new StatusController();
@@ -25,7 +25,7 @@
         }
 
         [TestMethod]
-        public void Health()
+        public void Health_ReturnsOk_Always()
         {
             // Arrange
             var controller = new StatusController();
