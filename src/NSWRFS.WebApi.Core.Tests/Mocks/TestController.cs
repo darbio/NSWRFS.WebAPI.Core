@@ -15,6 +15,8 @@ namespace NSWRFS.WebAPI.Core.Tests.Mocks
     using System.Web.ModelBinding;
     using System.Web.UI;
 
+    using NSWRFS.WebAPI.Core.Models;
+
     /// <summary>
     /// The list test controller.
     /// </summary>
@@ -22,19 +24,19 @@ namespace NSWRFS.WebAPI.Core.Tests.Mocks
     {
         [Route]
         [HttpGet]
-        public IHttpActionResult Get(int page = 1, int per_page = 20)
+        public IHttpActionResult Get([FromUri]PagingParams paging)
         {
             // 14 items in a list
             // The entire list is sent to the OkList method and filtered in there
             var list = "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...".Split(' ').ToList();
 
             // Return
-            return this.OkList(list, new Uri("http://localhost/Test/"), page, per_page);
+            return this.OkList(list, paging.page, paging.per_page);
         }
 
         [Route]
         [HttpGet]
-        public IHttpActionResult Get_Action(int page = 1, int per_page = 20)
+        public IHttpActionResult Get_Action([FromUri]PagingParams paging)
         {
             // 14 items in a list
             // These are pre-split as if they have come back from a service

@@ -1,5 +1,6 @@
 ﻿namespace NSWRFS.WebAPI.Core.Tests.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
@@ -13,6 +14,8 @@
 
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using NSWRFS.WebAPI.Core.Controllers;
+    using NSWRFS.WebAPI.Core.Models;
     using NSWRFS.WebAPI.Core.Tests.Mocks;
     using NSWRFS.WebAPI.Core.Results;
 
@@ -47,25 +50,16 @@
                     Assert.AreEqual(response.Headers.GetValues("X-Total-Page-Count").Single(), "7");
                     Assert.AreEqual(response.Headers.GetValues("X-Total-Count").Single(), "2");
                     Assert.AreEqual(response.Headers.GetValues("X-Current-Page").Single(), "2");
-                    Assert.AreEqual(response.Headers.GetValues("Link").Single(), "<http://localhost/Test/?page=1&per_page=2>; rel=\"first\", <http://localhost/Test/?page=1&per_page=2>; rel=\"previous\", <http://localhost/Test/?page=3&per_page=2>; rel=\"next\", <http://localhost/Test/?page=7&per_page=2>; rel=\"last\"");
+                    Assert.AreEqual(response.Headers.GetValues("Link").Single(), "</Test?page=1&per_page=2>; rel=\"first\", </Test?page=1&per_page=2>; rel=\"previous\", </Test?page=3&per_page=2>; rel=\"next\", </Test?page=7&per_page=2>; rel=\"last\"");
+
+                    var result = response.Content as ObjectContent<IList<string>>;
+                    Assert.IsNotNull(result);
+
+                    Assert.AreEqual(2, ((IList<string>)result.Value).Count);
+                    Assert.AreEqual("quisquam", ((IList<string>)result.Value)[0]);
+                    Assert.AreEqual("est", ((IList<string>)result.Value)[1]);
                 }
             }
-        }
-
-        [TestMethod]
-        public void GetList_ReturnsListCountCheck_Always()
-        {
-            // Arrange
-            var controller = new TestController();
-
-            // Act
-            var result = controller.Get(2, 2) as OkNegotiatedIListContentResult<IList<string>, string>;
-
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.Content.Count);
-            Assert.AreEqual("quisquam", result.Content[0]);
-            Assert.AreEqual("est", result.Content[1]);
         }
 
         [TestMethod]
@@ -337,26 +331,25 @@
             }
         }
 
-        //[TestMethod]
-        //public void Sort_Returns200List_Always()
-        //{
-        //    // Arrange
-        //    var config = new HttpConfiguration();
-        //    config.Routes.MapHttpRoute("Default", "{controller}/{action}");
+        [TestMethod]
+        public void ResultTestRelativeUri_ReturnsOKList_Always()
+        {
+            var config = new HttpConfiguration();
+            config.Routes.MapHttpRoute("Default", "{controller}/{action}");
 
-        //    var server = new HttpServer(config);
+            var server = new HttpServer(config);
 
-        //    using (var client = new HttpMessageInvoker(server))
-        //    {
-        //        // Act
-        //        using (var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost/Test/GetPeopleSort_Action?page=1&per_page=2&sort=-first_name,date_of_birth"))
-        //        using (var response = client.SendAsync(request, CancellationToken.None).Result)
-        //        {
-        //            // Assert
-        //            Assert.IsNotNull(response);
-        //            Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
-        //        }
-        //    }
-        //}
+            using (var client = new HttpMessageInvoker(server))
+            {
+                // Act
+                using (var request = new HttpRequestMessage(HttpMethod.Get, "http://localhost/Test/Get?page=1&per_page=2"))
+                using (var response = client.SendAsync(request, CancellationToken.None).Result)
+                {
+                    // Assert
+                    Assert.IsNotNull(response);
+                    Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
+                }
+            }
+        }
     }
 }

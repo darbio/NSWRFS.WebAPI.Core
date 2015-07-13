@@ -103,9 +103,6 @@ namespace NSWRFS.WebAPI.Core.Controllers
         /// <param name="list">
         /// The list.
         /// </param>
-        /// <param name="actionBaseUri">
-        /// The action base uri.
-        /// </param>
         /// <param name="currentPageIndex">
         /// The current page index.
         /// </param>
@@ -118,23 +115,16 @@ namespace NSWRFS.WebAPI.Core.Controllers
         /// <returns>
         /// The OkNegotiatedIListContentResult.
         /// </returns>
-        protected internal virtual OkNegotiatedIListContentResult<IList<T>, T> OkList<T>(IList<T> list, Uri actionBaseUri, int currentPageIndex, int pageSize) where T : class
+        protected internal virtual OkNegotiatedIListContentResult<IList<T>, T> OkList<T>(IList<T> list, int currentPageIndex, int pageSize) where T : class
         {
             // Work out the index of our last page
             var pagesCount = list.Count / pageSize;
-
-            // Set the Uri
-            var actionBaseUriString = actionBaseUri.ToString();
-            if (!actionBaseUriString.EndsWith("/"))
-            {
-                actionBaseUriString += "/";
-            }
-
+            
             // Calculate the Uris
-            var firstPageUri = new Uri(string.Format("{0}?page=1&per_page={1}", actionBaseUriString, pageSize));
-            var previousPageUri = new Uri(string.Format("{0}?page={1}&per_page={2}", actionBaseUriString, currentPageIndex > 1 ? (currentPageIndex - 1) : 1, pageSize));
-            var nextPageUri = new Uri(string.Format("{0}?page={1}&per_page={2}", actionBaseUriString, currentPageIndex + 1, pageSize));
-            var lastPageUri = new Uri(actionBaseUri, string.Format("{0}?page={1}&per_page={2}", actionBaseUriString, pagesCount > 0 ? pagesCount : 1, pageSize));
+            var firstPageUri = new Uri(string.Format("{0}?page=1&per_page={1}", this.Url.Request.RequestUri.LocalPath, pageSize), UriKind.Relative);
+            var previousPageUri = new Uri(string.Format("{0}?page={1}&per_page={2}", this.Url.Request.RequestUri.LocalPath, currentPageIndex > 1 ? (currentPageIndex - 1) : 1, pageSize), UriKind.Relative);
+            var nextPageUri = new Uri(string.Format("{0}?page={1}&per_page={2}", this.Url.Request.RequestUri.LocalPath, pagesCount > 0 ? currentPageIndex + 1 : 1, pageSize), UriKind.Relative);
+            var lastPageUri = new Uri(string.Format("{0}?page={1}&per_page={2}", this.Url.Request.RequestUri.LocalPath, pagesCount > 0 ? pagesCount : 1, pageSize), UriKind.Relative);
 
             // Calculate the skip
             var skip = (pageSize * currentPageIndex) - pageSize;
