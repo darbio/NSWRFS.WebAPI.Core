@@ -8,14 +8,14 @@ This is the Web API base template. It provides the following features:
 * Status (ping and health) endpoints.
 * Secrets.config for storing secret data not to be committed to a repository [see here](http://www.mattburkedev.com/keep-your-azure-secrets-safely-out-of-git/).
 * WebDeploy Package setup for AWS Elastic Beanstalk application.
-* CORS is enabled for URLs identified in the Web.Config NSWRFS.CorsAllowedOrigins setting.
+* CORS is enabled for URLs identified in the Web.Config CorsAllowedOrigins setting.
 * JSON underscores serializer for viewmodels.
 * NLog with file (TRACE) and Exceptionless (INFO) targets.
 * Implemented WebAPI `IHttpActionResult`s for use in the API.
 
 ## General REST rules
 
-This base API adhered to the [NSW RFS REST standards](REST-Rules.md).
+This base API adhered to the [REST standards](REST-Rules.md).
 
 ## General .Net WebAPI rules
 
